@@ -1,14 +1,11 @@
 package org.gatex.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.gatex.model.UserDTO;
 import org.gatex.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -25,9 +22,14 @@ public class UsersController {
 	}
 
 	@PostMapping
-	public ResponseEntity<String> add(@Valid @RequestBody UserDTO usrDto) {
+	public ResponseEntity<String> add(@Valid @RequestBody UserDTO usrDto)  {
 		String userId=userService.save(usrDto);
 		return new ResponseEntity<>(userId, HttpStatus.OK); 
+	}
+
+    @GetMapping("/adminAccountStatus")
+	public ResponseEntity<String> getAdminAccountStatus(){
+		return new ResponseEntity<>(userService.isAdminExists(), HttpStatus.OK);
 	}
 
 }

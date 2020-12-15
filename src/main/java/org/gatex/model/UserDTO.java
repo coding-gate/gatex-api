@@ -10,15 +10,15 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 public class UserDTO {
-	@NotEmpty(message="User Id can not be empty")
+	@NotEmpty(message="User Id is mandatory")
 	String id;
-	@NotEmpty(message="Password can not be empty")
-	@Size(min = 6, message = "Password should be more than 6 char long")
+	@NotEmpty(message="Password is mandatory")
 	String password;
-	@NotEmpty(message="Name can not be empty")
+	@NotEmpty(message="Name is mandatory")
 	String name;
-	@NotEmpty(message="Email Id can not be empty")
+	@NotEmpty(message="Email is mandatory")
 	String email;
-	@NotEmpty(message="Roles can not be empty")
-	String[] roles;
+	String key;
+	@NotEmpty(message="Type is mandatory")
+	String type;
 }

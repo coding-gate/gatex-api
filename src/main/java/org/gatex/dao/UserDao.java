@@ -4,6 +4,7 @@ import org.gatex.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public interface UserDao {
-   public UserDetails getUserById(String userId);
-   public String save(User usr);
+    UserDetails getUserById(String userId);
+    String save(User usr);
+    boolean isAdminExists();
 }
