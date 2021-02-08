@@ -4,7 +4,6 @@ import org.gatex.dao.UserDao;
 import org.gatex.entity.User;
 import org.gatex.model.AppUserPrincipal;
 import org.gatex.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
