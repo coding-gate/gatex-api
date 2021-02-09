@@ -25,7 +25,7 @@ public class MongoTagDao implements TagDao {
 	@Override
 	public Tag getById(String Id) {
 		return repository.findById(Id)
-				.orElseThrow(() -> new RecordNotFoundException("Tag " + Id + " not found"));
+				.orElse(new Tag());
 	}
 
 	@Override

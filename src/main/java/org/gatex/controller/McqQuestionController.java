@@ -38,7 +38,6 @@ public class McqQuestionController {
 		tag.setTagFor(mcqQuestion.getLang().getValue());
 		Set<ValueLabel> entries = Arrays.stream(mcqQuestion.getTags()).collect(Collectors.toSet());
 		tag.setTagEntries(entries);
-		tag.setTagEntries(entries);
 		tagDao.save(tag);
 		String userId= mcqQuestionDao.save(mcqQuestion);
 		return new ResponseEntity<>(userId, HttpStatus.OK); 
