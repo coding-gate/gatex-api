@@ -2,14 +2,20 @@ package org.gatex.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.gatex.dao.McqQuestionDao;
+import org.gatex.dao.TagDao;
 import org.gatex.entity.McqQuestion;
+import org.gatex.entity.Tag;
+import org.gatex.model.ValueLabel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -18,14 +24,22 @@ import java.util.List;
 public class McqQuestionController {
 
 	private final McqQuestionDao mcqQuestionDao;
+	private final TagDao tagDao;
 
-	public McqQuestionController(McqQuestionDao mcqQuestionDao) {
+	public McqQuestionController(McqQuestionDao mcqQuestionDao, TagDao tagDao) {
 		this.mcqQuestionDao = mcqQuestionDao;
+		this.tagDao=tagDao;
 	}
 
 	@PostMapping
 	public ResponseEntity<String> add(@Valid @RequestBody McqQuestion mcqQuestion, Principal principal)  {
 		mcqQuestion.setUserName(principal.getName());
+		Tag tag=new Tag();
+		tag.setTagFor(mcqQuestion.getLang().getValue());
+		Set<ValueLabel> entries = Arrays.stream(mcqQuestion.getTags()).collect(Collectors.toSet());
+		tag.setTagEntries(entries);
+		tag.setTagEntries(entries);
+		tagDao.save(tag);
 		String userId= mcqQuestionDao.save(mcqQuestion);
 		return new ResponseEntity<>(userId, HttpStatus.OK); 
 	}
