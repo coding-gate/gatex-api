@@ -26,8 +26,8 @@ public class CodeTemplateController {
     @GetMapping("/{key}")
 	public ResponseEntity<Map<String,String>> get(@PathVariable(name="key", required=true) String key){
     	Map<String,String> data=new HashMap();
-		data.put("answer", env.getProperty(key+".answer"));
-		data.put("unittest", env.getProperty(key+".unittest"));
+		data.put("answerTemplate", env.getProperty(key+".answer"));
+		data.put("unittestTemplate", env.getProperty(key+".unittest"));
 		return new ResponseEntity<>(data, HttpStatus.OK);
 	}
 }
