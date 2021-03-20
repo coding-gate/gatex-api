@@ -66,8 +66,9 @@ public class McqTestController {
 			@RequestParam(name="title", required=false) String title,
 			@RequestParam(name="language", required=false) String language,
 			@RequestParam(name="timeLimit", required=false) String timeLimit,
+			@RequestParam(name="isLocked", required=false) String isLocked,
 			Principal principal) {
-		return new ResponseEntity<>(mcqTestDao.search(title,language,timeLimit, principal.getName()), HttpStatus.OK);
+		return new ResponseEntity<>(mcqTestDao.search(title,language,timeLimit, isLocked, principal.getName()), HttpStatus.OK);
 	}
 
 
