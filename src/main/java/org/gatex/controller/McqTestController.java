@@ -2,7 +2,6 @@ package org.gatex.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.gatex.dao.McqTestDao;
-import org.gatex.entity.McqQuestion;
 import org.gatex.entity.McqTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,17 +31,17 @@ public class McqTestController {
 	}
 
 	@PutMapping
-	public ResponseEntity<String> lockTest(@PathVariable(name="id", required=true) String id){
+	public ResponseEntity<String> lockTest(@PathVariable(name="id") String id){
 		return new ResponseEntity<>(mcqTestDao.lockTest(id), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Long> delete(@PathVariable(name="id", required=true) String id){
+	public ResponseEntity<Long> delete(@PathVariable(name="id") String id){
 		return new ResponseEntity<>(mcqTestDao.delete(id),HttpStatus.OK);
 	}
 
     @GetMapping("/{id}")
-	public ResponseEntity<McqTest> get(@PathVariable(name="id", required=true) String id){
+	public ResponseEntity<McqTest> get(@PathVariable(name="id") String id){
 		return new ResponseEntity<>(mcqTestDao.getById(id), HttpStatus.OK);
 	}
 
