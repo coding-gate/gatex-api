@@ -30,7 +30,7 @@ public class McqTestController {
 		return new ResponseEntity<>(userId, HttpStatus.OK); 
 	}
 
-	@PutMapping
+	@PutMapping("lock/{id}")
 	public ResponseEntity<String> lockTest(@PathVariable(name="id") String id){
 		return new ResponseEntity<>(mcqTestDao.lockTest(id), HttpStatus.OK);
 	}
