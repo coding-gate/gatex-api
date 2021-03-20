@@ -63,7 +63,7 @@ public class MongoMcqTestDao implements McqTestDao {
 	}
 
 	@Override
-	public List<McqTest> search(String title, String language, String timeLimit, String isLocked, String userName) {
+	public List<McqTest> search(String title, String language, String timeLimit, Boolean isLocked, String userName) {
 		Query query = new Query();
 
 		query.addCriteria(Criteria.where("userName").is(userName));

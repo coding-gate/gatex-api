@@ -12,5 +12,5 @@ public interface McqTestDao {
     List<McqTest> getAllUnlockByUser(String userName);
     List<McqTest> getAllLockByUser(String userName);
     long delete(String McqTestId);
-    List<McqTest> search(String title, String language, String timeLimit, String isLocked, String userName);
+    List<McqTest> search(String title, String language, String timeLimit, Boolean isLocked, String userName);
 }
