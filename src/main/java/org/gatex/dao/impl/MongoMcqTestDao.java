@@ -38,6 +38,15 @@ public class MongoMcqTestDao implements McqTestDao {
 		return saveRecord.getId();
 	}
 
+	public String lockTest(String id) {
+		McqTest test=repository.findById(id)
+				.orElseThrow(() -> new RecordNotFoundException("McqTest " + id + " not found"));
+		test.setCreatedOn(new Date());
+		test.setLocked(true);
+		McqTest saveRecord= repository.save(test);
+		return saveRecord.getId();
+	}
+
 	public long delete(String id) {
 		McqTest mcqTest=new McqTest();
 		mcqTest.setId(id);
@@ -72,6 +81,24 @@ public class MongoMcqTestDao implements McqTestDao {
 		Sort sorting = Sort.by("createdOn").descending();
 		query.with(sorting);
 
+		return mongoTemplate.find(query,McqTest.class);
+	}
+
+	public List<McqTest> getAllUnlockByUser(String userName){
+		Query query = new Query();
+		query.addCriteria(Criteria.where("userName").is(userName));
+		query.addCriteria(Criteria.where("isLocked").is(false));
+		Sort sorting = Sort.by("createdOn").descending();
+		query.with(sorting);
+		return mongoTemplate.find(query,McqTest.class);
+	}
+
+	public List<McqTest> getAllLockByUser(String userName){
+		Query query = new Query();
+		query.addCriteria(Criteria.where("userName").is(userName));
+		query.addCriteria(Criteria.where("isLocked").is(true));
+		Sort sorting = Sort.by("createdOn").descending();
+		query.with(sorting);
 		return mongoTemplate.find(query,McqTest.class);
 	}
 

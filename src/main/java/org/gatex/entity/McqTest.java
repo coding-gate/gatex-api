@@ -25,6 +25,7 @@ public class McqTest {
     List<String> selectedQuestions;
     ValueLabel language;
     String userName;
+    boolean isLocked;
     Date createdOn;
  /*
     public static void main(String[] arg) throws JsonProcessingException {

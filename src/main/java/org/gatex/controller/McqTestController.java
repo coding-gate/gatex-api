@@ -31,6 +31,11 @@ public class McqTestController {
 		return new ResponseEntity<>(userId, HttpStatus.OK); 
 	}
 
+	@PutMapping
+	public ResponseEntity<String> lockTest(@PathVariable(name="id", required=true) String id){
+		return new ResponseEntity<>(mcqTestDao.lockTest(id), HttpStatus.OK);
+	}
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Long> delete(@PathVariable(name="id", required=true) String id){
 		return new ResponseEntity<>(mcqTestDao.delete(id),HttpStatus.OK);
@@ -44,6 +49,16 @@ public class McqTestController {
 	@GetMapping("/byUser")
 	public ResponseEntity<List<McqTest>> getByUser(Principal principal){
 		return new ResponseEntity<>(mcqTestDao.getAllByUser(principal.getName()), HttpStatus.OK);
+	}
+
+	@GetMapping("/byUser/allLocked")
+	public ResponseEntity<List<McqTest>> getAllLockedByUser(Principal principal){
+		return new ResponseEntity<>(mcqTestDao.getAllLockByUser(principal.getName()), HttpStatus.OK);
+	}
+
+	@GetMapping("/byUser/allUnlocked")
+	public ResponseEntity<List<McqTest>> getAllUnlockedByUser(Principal principal){
+		return new ResponseEntity<>(mcqTestDao.getAllUnlockByUser(principal.getName()), HttpStatus.OK);
 	}
 
 	@GetMapping("/search")
