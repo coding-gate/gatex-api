@@ -29,7 +29,7 @@ public class McqQuestion {
     ValueLabel complexity;
     String type;
     Date createdOn;
-    List<Object> options;
+    List<String[]> options;
  /*
     public static void main(String[] arg) throws JsonProcessingException {
 

@@ -3,6 +3,8 @@ package org.gatex.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.gatex.dao.McqTestDao;
 import org.gatex.entity.McqTest;
+import org.gatex.model.McqExamQuestion;
+import org.gatex.service.McqTestService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +21,11 @@ public class McqTestController {
 
 	private final McqTestDao mcqTestDao;
 
-	public McqTestController(McqTestDao mcqTestDao) {
+	private final McqTestService mcqTestService;
+
+	public McqTestController(McqTestDao mcqTestDao, McqTestService mcqTestService) {
 		this.mcqTestDao = mcqTestDao;
+		this.mcqTestService = mcqTestService;
 	}
 
 	@PostMapping
@@ -43,6 +48,11 @@ public class McqTestController {
     @GetMapping("/{id}")
 	public ResponseEntity<McqTest> get(@PathVariable(name="id") String id){
 		return new ResponseEntity<>(mcqTestDao.getById(id), HttpStatus.OK);
+	}
+
+	@GetMapping("questions/{id}")
+	public ResponseEntity<List<McqExamQuestion>> getQuestions(@PathVariable(name="id") String id){
+		return new ResponseEntity<>(mcqTestService.getQuestions(id), HttpStatus.OK);
 	}
 
 	@GetMapping("/byUser")
