@@ -25,9 +25,9 @@ public class MongoUserDao implements UserDao {
 	}
 
 	@Override
-	public UserDetails getUserById(String userId) {		
-		User user = userRepository.findById(userId)
-				.orElseThrow(() -> new UsernameNotFoundException("Username " + userId + "not found"));
+	public UserDetails getUserById(String id) {
+		User user = userRepository.findById(id)
+				.orElseThrow(() -> new UsernameNotFoundException("Username " + id + "not found"));
 		return new AppUserPrincipal(user);
 	}
 

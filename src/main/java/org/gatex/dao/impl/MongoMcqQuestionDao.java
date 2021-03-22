@@ -29,9 +29,9 @@ public class MongoMcqQuestionDao implements McqQuestionDao {
 	}
 
 	@Override
-	public McqQuestion getById(String mcqQuestionId) {
-		return repository.findById(mcqQuestionId)
-				.orElseThrow(() -> new RecordNotFoundException("McqQuestion " + mcqQuestionId + " not found"));
+	public McqQuestion getById(String id) {
+		return repository.findById(id)
+				.orElseThrow(() -> new RecordNotFoundException("McqQuestion " + id + " not found"));
 	}
 
 	@Override
@@ -44,9 +44,9 @@ public class MongoMcqQuestionDao implements McqQuestionDao {
 		return saveRecord.getId();
 	}
 
-	public long delete(String mcqQuestionId) {
+	public long delete(String id) {
 		McqQuestion mcqQuestion=new McqQuestion();
-		mcqQuestion.setId(mcqQuestionId);
+		mcqQuestion.setId(id);
 		DeleteResult deleteResult = mongoTemplate.remove(mcqQuestion);
 		return deleteResult.getDeletedCount();
 	}
