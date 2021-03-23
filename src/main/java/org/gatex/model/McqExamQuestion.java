@@ -21,5 +21,5 @@ public class McqExamQuestion {
     String id;
     String text;
     String type;
-    List<String> optionTexts;
+    List<Object> optionTexts;
 }

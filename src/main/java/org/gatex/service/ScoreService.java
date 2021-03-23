@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ScoreService {
@@ -20,9 +19,9 @@ public class ScoreService {
     private List getCorrectAnswerList(String id){
         List ans=new ArrayList();
         McqQuestion question = mcqQuestionDao.getById(id);
-        List<String[]> options = question.getOptions();
+        List<Object[]> options = question.getOptions();
         for(int i=0; i<options.size(); i++){
-            if(Boolean.parseBoolean(options.get(i)[1])){
+            if((boolean)options.get(i)[1]){
                 ans.add(i);
             }
         }
@@ -38,13 +37,6 @@ public class ScoreService {
             }
         }
         return correctCount/userAnswerLength;
-    }
-
-    private double calculate(String id){
-        McqQuestion question = mcqQuestionDao.getById(id);
-        question.getOptions().stream().map(e->Boolean.parseBoolean(e[1])).filter(e->e.booleanValue()).collect(Collectors.toList());
-
-        return 0;
     }
 
     public double getScore(List<McqExamAnswer> mcqExamAnswers){

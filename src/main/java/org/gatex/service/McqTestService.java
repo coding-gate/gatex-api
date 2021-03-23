@@ -34,7 +34,7 @@ public class McqTestService {
         for (McqQuestion question : questions) {
             McqExamQuestion q = new McqExamQuestion();
             BeanUtils.copyProperties(question, q);
-            List<String> options = question.getOptions().stream().map(e -> e[0]).collect(Collectors.toList());
+            List<Object> options = question.getOptions().stream().map(e -> e[0]).collect(Collectors.toList());
             q.setOptionTexts(options);
             examQuestion.add(q);
         }
