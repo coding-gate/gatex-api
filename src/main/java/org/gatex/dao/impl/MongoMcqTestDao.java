@@ -63,7 +63,7 @@ public class MongoMcqTestDao implements McqTestDao {
 	}
 
 	@Override
-	public List<McqTest> search(String title, String language, String timeLimit, Boolean isLocked, String userName) {
+	public List<McqTest> search(String title, String language, String timeLimit, Boolean isLocked, String type, String userName) {
 		Query query = new Query();
 
 		query.addCriteria(Criteria.where("userName").is(userName));
@@ -71,6 +71,11 @@ public class MongoMcqTestDao implements McqTestDao {
 		if(title!=null){
 			query.addCriteria(Criteria.where("title").regex(".*"+title+"*."));
 		}
+
+		if(type!=null){
+			query.addCriteria(Criteria.where("type").regex(".*"+type+"*."));
+		}
+
 		if(language!=null){
 			query.addCriteria(Criteria.where("language.value").is(language));
 		}

@@ -21,6 +21,7 @@ public class McqTest {
     @Id
     String id;
     String title;
+    String type;
     String timeLimit;
     List<String> selectedQuestions;
     ValueLabel language;

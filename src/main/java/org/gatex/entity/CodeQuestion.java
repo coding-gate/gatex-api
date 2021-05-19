@@ -21,6 +21,7 @@ public class CodeQuestion {
     @Id
     String id;
     String userName;
+    String title;
     String text;
     List<String> tagValues;
     ValueLabel[] tags;
