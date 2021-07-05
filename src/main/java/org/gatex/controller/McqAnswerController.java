@@ -31,7 +31,7 @@ public class McqAnswerController {
 	public ResponseEntity<String> add(@Valid @RequestBody McqAnswer mcqAnswer, Principal principal)  {
 		mcqAnswer.setUserName(principal.getName());
 		List<McqExamAnswer> mcqExamAnswers = mcqAnswer.getMcqExamAnswers();
-		double score = scoreService.getScore(mcqExamAnswers);
+		double score = scoreService.getMcqScore(mcqExamAnswers);
 		mcqAnswer.setScore(score);
 		String id= mcqAnswerDao.save(mcqAnswer);
 		return new ResponseEntity<>(id, HttpStatus.OK);
