@@ -1,9 +1,9 @@
 package org.gatex.service;
 
 import org.gatex.dao.McqQuestionDao;
-import org.gatex.dao.McqTestDao;
+import org.gatex.dao.AssessmentDao;
 import org.gatex.entity.McqQuestion;
-import org.gatex.entity.McqTest;
+import org.gatex.entity.Assessment;
 import org.gatex.model.McqExamQuestion;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class McqTestService {
-    private final McqTestDao mcqTestDao;
+    private final AssessmentDao assessmentDao;
     private final McqQuestionDao mcqQuestionDao;
 
-    public McqTestService(McqTestDao mcqTestDao, McqQuestionDao mcqQuestionDao) {
-        this.mcqTestDao = mcqTestDao;
+    public McqTestService(AssessmentDao assessmentDao, McqQuestionDao mcqQuestionDao) {
+        this.assessmentDao = assessmentDao;
         this.mcqQuestionDao = mcqQuestionDao;
     }
 
@@ -28,7 +28,7 @@ public class McqTestService {
 
         List<McqExamQuestion> examQuestion=new ArrayList<>();
 
-        McqTest test = mcqTestDao.getById(testId);
+        Assessment test = assessmentDao.getById(testId);
         List<McqQuestion> questions = test.getSelectedQuestions().stream().map(mcqQuestionDao::getById).collect(Collectors.toList());
 
         for (McqQuestion question : questions) {

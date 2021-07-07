@@ -1,7 +1,6 @@
 package org.gatex.dao;
 
 import org.gatex.entity.McqAnswer;
-import org.gatex.entity.McqTest;
 
 import java.util.List;
 

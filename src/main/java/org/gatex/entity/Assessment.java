@@ -16,8 +16,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection="McqTest")
-public class McqTest {
+@Document(collection="assessments")
+public class Assessment {
     @Id
     String id;
     String title;
@@ -26,7 +26,7 @@ public class McqTest {
     List<String> selectedQuestions;
     ValueLabel language;
     String userName;
-    boolean isLocked;
+    boolean locked;
     Date createdOn;
  /*
     public static void main(String[] arg) throws JsonProcessingException {
