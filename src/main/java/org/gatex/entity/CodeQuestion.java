@@ -28,7 +28,7 @@ public class CodeQuestion {
     ValueLabel lang;
     ValueLabel time;
     ValueLabel complexity;
-    String templateCode;
+    String answerCode;
     String unittestCode;
     Date createdOn;
 
